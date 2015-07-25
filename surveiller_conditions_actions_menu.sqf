@@ -37,7 +37,7 @@ _objet_pointe = _cursorTarget_distance select 0;
 
 
 _isNOTlocked = locked _objet_pointe < 2;
-
+_friendlyInRange=false;{if((_x getvariable ["BUILD_OWNER","-1"]) in [getplayerUID player, Epoch_my_groupUID])then{_friendlyInRange=true;}} forEach nearestObjects [player, ["plotpole_EPOCH"], 225];
 
 if (call compile R3F_LOG_CFG_string_condition_allow_logistics_on_this_client &&
 !R3F_LOG_mutex_local_verrou && _vehicule_joueur == _joueur && !isNull _objet_pointe && _cursorTarget_distance select 1 < 3.75
@@ -71,7 +71,7 @@ if (_fonctionnalites select __can_be_moved_by_player) then
 {
 // Condition action deplacer_objet
 R3F_LOG_action_deplacer_objet_valide = (count crew _objet_pointe == 0 || _isUav) && (isNull R3F_LOG_joueur_deplace_objet) &&
-_objet_pas_en_cours_de_deplacement && isNull (_objet_pointe getVariable "R3F_LOG_est_transporte_par") && _isNOTlocked &&
+_objet_pas_en_cours_de_deplacement && isNull (_objet_pointe getVariable "R3F_LOG_est_transporte_par") && _isNOTlocked && _friendlyInRange && // _friendlyInRange is the key to stop shelf glitch
 _objet_deverrouille && !(_objet_pointe getVariable "R3F_LOG_disabled");
 
 // Condition action revendre_usine_deplace
