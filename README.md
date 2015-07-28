@@ -13,3 +13,9 @@ Creation Factory edits-remove credits system and replace with crypto
 configure Creation Factory and remove any unwanted items from being able to be spawned
 allow creation factory only when in range of friendly plot pole
 Add presistance to creation factory buildable objects
+
+
+Install NOTES:
+
+Just add the R3F folder to your mission file.
+Add the contents of init.sqf and description.ext to your same files in your mission folder!
